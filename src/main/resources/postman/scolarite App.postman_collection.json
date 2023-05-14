@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "32a9d6d5-1111-4082-a57a-84b652d3aa49",
+		"name": "scolarite App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "jwt",
+			"item": [
+				{
+					"name": "authenticate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var res = pm.response.json();\r",
+									"pm.environment.set(\"token\",  res.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Sofien\",\r\n    \"password\": \"sofienadmin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/authenticate",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"zaghdoudisofien2011@gmail.com\",\r\n    \"username\": \"Sofien\",\r\n    \"password\": \"sofienadmin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "etudiant",
+			"item": [
+				{
+					"name": "searchEtudiants",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "default"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/etudiants/search?nomClasse=Classe1&nomEnseignant=Sofien Zaghdoudi&page=1&per_page=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"etudiants",
+								"search"
+							],
+							"query": [
+								{
+									"key": "nomClasse",
+									"value": "Classe1"
+								},
+								{
+									"key": "nomEnseignant",
+									"value": "Sofien Zaghdoudi"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
